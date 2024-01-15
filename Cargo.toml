@@ -1,6 +1,6 @@
 [package]
 name = "cnctd_config"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 authors = ["Connected Dot Inc.", "Kyle Ebner <kyle@cnctd.world>"]
 description = "Store app configurations in a json file"
@@ -11,3 +11,5 @@ keywords = ["module"]
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+serde = { version = "1.0.195", features = ["derive"] }
+serde_json = "1.0.111"
