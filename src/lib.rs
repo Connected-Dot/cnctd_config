@@ -32,11 +32,13 @@ impl<T> Config<T> where T: Serialize + for<'de> Deserialize<'de> {
         Ok(())
     }
 
-    pub fn load(&mut self) -> io::Result<()> {
-        let mut file = File::open(&self.file_path)?;
+    pub fn load(file_path: Option<&str>) -> io::Result<()> {
+        let file_path = if file_path.is_some() { file_path.unwrap().to_string() } else { "./config.json".to_string() };
+        let mut file = File::open(&file_path)?;
         let mut data = String::new();
         file.read_to_string(&mut data)?;
-        self.data = serde_json::from_str(&data)?;
+        let config = Config::new(data, Some(&file_path));
+        
         Ok(())
     }
 }
